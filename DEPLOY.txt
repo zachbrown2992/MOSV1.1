@@ -1,0 +1,133 @@
+MOS APP — DEPLOYMENT INSTRUCTIONS
+===================================
+
+WHAT YOU NEED BEFORE STARTING:
+  - GitHub account (github.com)
+  - Vercel account (vercel.com — sign in with GitHub)
+  - Anthropic API key (console.anthropic.com → API Keys)
+  - The mos-app folder from Claude (all files already created)
+
+TOTAL TIME: ~15 minutes
+
+---
+
+STEP 1 — CREATE A GITHUB REPOSITORY
+-------------------------------------
+1. Go to github.com and sign in.
+2. Click the "+" in the top right → "New repository."
+3. Name it: mos-app
+4. Set it to Private.
+5. Do NOT check "Add a README" or any other options.
+6. Click "Create repository."
+7. GitHub will show you a page with setup commands. Keep this tab open.
+
+---
+
+STEP 2 — PUT THE CODE ON GITHUB
+---------------------------------
+You have a folder called mos-app with all the files Claude created.
+
+Option A — If you have Git installed on your computer:
+  Open Terminal (Mac) or Command Prompt (Windows).
+  Navigate to the mos-app folder:
+    cd path/to/mos-app
+  Run these commands one at a time:
+    git init
+    git add .
+    git commit -m "Initial MOS app"
+    git branch -M main
+    git remote add origin https://github.com/YOUR_USERNAME/mos-app.git
+    git push -u origin main
+  Replace YOUR_USERNAME with your GitHub username.
+
+Option B — If you don't have Git (easier):
+  1. On the GitHub repository page, click "uploading an existing file."
+  2. Drag the entire contents of the mos-app folder into the upload area.
+     (Do NOT drag the mos-app folder itself — drag what's inside it.)
+  3. Make sure you include ALL files and folders, including hidden ones
+     like .gitignore. You may need to show hidden files on your computer:
+       Mac: Cmd+Shift+. in Finder
+       Windows: View → Show → Hidden items in File Explorer
+  4. Scroll down, click "Commit changes."
+
+---
+
+STEP 3 — DEPLOY ON VERCEL
+---------------------------
+1. Go to vercel.com and sign in with GitHub.
+2. Click "Add New" → "Project."
+3. Find your mos-app repository and click "Import."
+4. Vercel will detect it as a Next.js project automatically.
+5. DO NOT click Deploy yet — you need to add environment variables first.
+
+---
+
+STEP 4 — ADD ENVIRONMENT VARIABLES
+-------------------------------------
+On the Vercel import page, scroll down to "Environment Variables."
+Add these two variables:
+
+  Variable 1:
+    Name:  ANTHROPIC_API_KEY
+    Value: your Anthropic API key (starts with sk-ant-)
+
+  Variable 2:
+    Name:  ACCESS_PASSWORD
+    Value: choose any password you want for the app gate
+           (this is what you give to people you want to access the app)
+
+Click "Add" after entering each one.
+
+---
+
+STEP 5 — DEPLOY
+-----------------
+Click "Deploy."
+Vercel will build and deploy the app. Takes about 60–90 seconds.
+When it's done, Vercel gives you a URL like:
+  https://mos-app-yourname.vercel.app
+
+That's your live app.
+
+---
+
+STEP 6 — TEST IT
+-----------------
+1. Go to your Vercel URL.
+2. Enter the ACCESS_PASSWORD you set in Step 4.
+3. You should see the MOS chat interface.
+4. Send a message and confirm the agent responds.
+
+If it works: Phase 9 is done. You have a live MOS product.
+
+---
+
+TROUBLESHOOTING
+----------------
+"Application error" on load:
+  → Go to Vercel dashboard → your project → "Functions" tab.
+    Look for error logs. Most common cause: ANTHROPIC_API_KEY
+    is missing or entered incorrectly.
+
+Password gate not working:
+  → Confirm ACCESS_PASSWORD was added in Vercel environment
+    variables (not just in .env.local). Environment variables
+    set locally don't apply to Vercel deployments.
+
+Blank page or no styles:
+  → Hard refresh the browser (Cmd+Shift+R on Mac,
+    Ctrl+Shift+R on Windows).
+
+Need to update environment variables after deploy:
+  → Vercel dashboard → your project → Settings →
+    Environment Variables. After changing, redeploy:
+    Deployments → the latest deployment → three dots → Redeploy.
+
+---
+
+CUSTOM DOMAIN (optional, can do later)
+----------------------------------------
+1. Buy a domain from Namecheap, Google Domains, or similar (~$12/year).
+2. In Vercel: your project → Settings → Domains → Add domain.
+3. Follow Vercel's DNS instructions for your registrar.
+Takes 5–30 minutes to propagate.
