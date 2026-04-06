@@ -10,7 +10,7 @@ export default function Home() {
   const router = useRouter()
 
   useEffect(() => {
-    if (sessionStorage.getItem('mos_auth') === 'true') {
+    if (localStorage.getItem('mos_auth') === 'true') {
       router.push('/chat')
     }
   }, [router])
@@ -27,7 +27,7 @@ export default function Home() {
     })
 
     if (res.ok) {
-      sessionStorage.setItem('mos_auth', 'true')
+      localStorage.setItem('mos_auth', 'true')
       router.push('/chat')
     } else {
       setError('Incorrect password.')
