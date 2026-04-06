@@ -20,7 +20,7 @@ export default function ChatPage() {
       {
         id: 'welcome',
         role: 'assistant',
-        content: "I'm the MOS Agent. I help B2B SaaS companies diagnose what's actually limiting their growth and determine the highest-leverage actions to take next.\n\nTo give you useful guidance, I need to understand your current situation before making any recommendations. Let's start there.\n\nWhat's your company name, and can you give me a quick snapshot of where you are — stage, headcount, ARR, and what your marketing function looks like today?",
+        content: "Hi! I'm MOS — a marketing AI agent built by Zach Brown. I'm here to help you think through marketing challenges using frameworks and experience Zach developed supporting high-growth B2B tech startups.\n\nYou can:\n- Tell me about a marketing challenge you're facing\n- Ask me about Zach's background and experience\n- Paste a job description — I'll tell you how Zach would approach his first 30/60/90 days\n\nWhat's on your mind?",
       },
     ],
   })
