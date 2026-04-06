@@ -9,7 +9,7 @@ export default function ChatPage() {
   const bottomRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
-    if (sessionStorage.getItem('mos_auth') !== 'true') {
+    if (localStorage.getItem('mos_auth') !== 'true') {
       router.push('/')
     }
   }, [router])
@@ -30,7 +30,7 @@ export default function ChatPage() {
   }, [messages])
 
   function handleSignOut() {
-    sessionStorage.removeItem('mos_auth')
+    localStorage.removeItem('mos_auth')
     router.push('/')
   }
 
